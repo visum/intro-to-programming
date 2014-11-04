@@ -1,0 +1,23 @@
+<div app-main controller="app.AppMain">
+  <style>
+    [app-main] {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    [app-main] [tag="state-manager"] {
+      position: absolute;
+      top: 20px;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+    }
+  </style>
+
+  <div component="ui-state-manager" tag="state-manager" controller="components.ui.states.HistoricalStateManager">
+    <div component="one-welcome" name="welcome" initial></div>
+    <div component="two-console" name="console"></div>
+    <div component="three-console" name="console-2"></div>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div>
+        <span data-bind="person.firstName"></span>
+        <span data-bind="person.lastName"></span>
+    </div>
+    <script src="/libcdn/v1.1/js/BASE.js"></script>
+    <script>
+        BASE.require.loader.setRoot("/libcdn/v1.1/js/");
+        BASE.require(["BASE.behaviors.Observable"], function () {
+
+
+            var makeNotifyPropertyChange = function (obj) {
+                BASE.behaviors.Observable.call(obj);
+
+                Object.keys(obj).forEach(function (key) {
+                    var value = obj[key];
+                    if (typeof value !== "function") {
+
+                        Object.defineProperty(obj, key, {
+                            get: function () {
+                                return value;
+                            },
+                            set: function (newValue) {
+                                var oldValue = value;
+                                if (oldValue !== newValue) {
+                                    obj.notify({
+                                        type: "propertyChange",
+                                        property: key,
+                                        oldValue: oldValue,
+                                        newValue: newValue
+                                    });
+                                    value = newValue;
+                                }
+                            }
+                        });
+
+                        var observers = [];
+                        obj.observeProperty = function (propertyName) {
+                            var objObserver = obj.observe().filter(function (e) {
+                                return e.type === "propertyChange" && e.property === propertyName;
+                            }).onEach(function (e) {
+                                observer.notify(e);
+                            });
+
+                            var observer = new BASE.util.Observer(function () {
+                                var index = observers.indexOf(observer);
+                                if (index > -1) {
+                                    observers.splice(index, 1);
+                                }
+                                objObserver.dispose();
+                            });
+
+                            observers.push(observer);
+                            return observer;
+                        };
+                    }
+                });
+            };
+
+            var bindDocument = function(){
+                var elementList = document.querySelectorAll("[data-bind]");
+
+                Array.prototype.slice.call(elementList, 0).forEach(function(element){
+                    var parts = element.getAttribute("data-bind").split(".");
+                    var object = BASE.getObject(parts.slice(0, parts.length -1).join(""));
+                    var property = parts.slice(parts.length -1, parts.length).join("");
+
+                    if (parts.length < 2){
+                        object = window;
+                    }
+
+                    if (typeof object !== "undefined"){
+                        makeNotifyPropertyChange(object);
+                        object.observeProperty(property).onEach(function(e){
+                            element.innerHTML =e.newValue;
+                        });
+                    }
+                });
+            };
+
+            window.person = {
+                firstName: null,
+                lastName: null
+            };
+
+            bindDocument();
+
+            person.firstName = "Jared";
+            person.lastName = "Barnes";
+
+        });
+
+       
+    </script>
+</body>
+</html>

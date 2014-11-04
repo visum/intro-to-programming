@@ -1,0 +1,9 @@
+{
+  "root": "components/app/",
+  "aliases":{
+    "app-main": "AppMain.html",
+    "one-welcome": "OneWelcome.html",
+    "two-console": "TwoConsole.html",
+    "three-console": "ThreeConsole.html"
+  }
+}

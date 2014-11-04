@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Test the State Manager</title>
+    <script type="components/config" src="/libcdn/v1.1/components/components.json"></script>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #component-container {
+            position: absolute;
+            top:0;
+            bottom: 200px;
+            left: 0;
+            right: 0;
+        }
+
+        #controls {
+            position: absolute;
+            height: 200px;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="component-container">
+        <div component="ui-state-manager" id="state-manager" controller="components.ui.states.HistoricalStateManager">
+            <div component="StateOne.html" name="one" initial></div>
+            <div component="StateTwo.html" name="two"></div>
+            <div component="StateThree.html" name="three"></div>
+        </div>
+    </div>
+
+    <div id="controls">
+        <table>
+            <thead>
+                <tr>
+                    <th>Operation</th>
+                    <th>State One</th>
+                    <th>State Two</th>
+                    <th>State Three</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Push</td>
+                    <td><button type="button" id="push-one">One</button></td>
+                    <td><button type="button" id="push-two">Two</button></td>
+                    <td><button type="button" id="push-three">Three</button></td>
+                </tr>
+                <tr>
+                    <td>Replace</td>
+                    <td><button type="button" id="replace-one">One</button></td>
+                    <td><button type="button" id="replace-two">Two</button></td>
+                    <td><button type="button" id="replace-three">Three</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="button" id="pop">Pop 1</button>
+        <button type="button" id="pop2">Pop 2</button>
+    </div>
+
+    <script src="/libcdn/v1.1/js/BASE.js"></script>
+    <script type="text/javascript">
+        BASE.require.loader.setRoot("/libcdn/v1.1/js");
+        BASE.require.loader.setNamespace("components", "/libcdn/v1.1/components");
+        BASE.require.loader.setNamespace("stateTest", ".");
+        BASE.require(["BASE.web.components"], function () {
+            $("#pop").on("click", function () {
+                $("#state-manager").controller().pop();
+            });
+
+            $("#pop2").on("click", function () {
+                $("#state-manager").controller().pop(2);
+            });
+
+            $("#push-one").on("click", function () {
+                $("#state-manager").controller().push("one");
+            });
+
+            $("#push-two").on("click", function () {
+                $("#state-manager").controller().push("two");
+            });
+
+            $("#push-three").on("click", function () {
+                $("#state-manager").controller().push("three");
+            });
+
+            $("#replace-one").on("click", function () {
+                $("#state-manager").controller().replace("one");
+            });
+
+            $("#replace-two").on("click", function () {
+                $("#state-manager").controller().replace("two");
+            });
+
+            $("#replace-three").on("click", function () {
+                $("#state-manager").controller().replace("three");
+            });
+        });
+    </script>
+</body>
+</html>

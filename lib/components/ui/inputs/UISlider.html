@@ -1,0 +1,44 @@
+﻿<div ui-slider controller="components.ui.inputs.UISlider">
+    <style>
+        @import url("lib/plugins/noUiSlider/jquery.nouislider.css");
+
+        [ui-slider] .ui-slider-items-container {
+            *zoom: 1;
+            margin-bottom: 10px;
+        }
+
+        [ui-slider] .ui-slider-items-container:before,
+        [ui-slider] .ui-slider-items-container:after {
+            display: table;
+            content: "";
+        }
+
+        [ui-slider] .ui-slider-items-container:after {
+            clear: both;
+        }
+
+        [ui-slider] .ui-slider-item {
+            float: left;
+            font-weight: bold;
+        }
+
+        [ui-slider] .noUi-origin[style*="left: 0%;"] .noUi-handle {
+            left: -13px;
+        }
+
+        [ui-slider] .noUi-origin[style*="left: 100%;"] .noUi-handle {
+            left: -21px;
+        }
+
+        [ui-slider] .ui-slider-item .ui-slider-content-span {
+            position: relative;
+            display: inline-block;
+        }
+
+        [ui-slider] .ui-slider-item .hide {
+            display: none;
+        }
+    </style>
+    <div tag="sliderItems" class="ui-slider-items-container"><embed select=".ui-slider-item" /></div>
+    <div class="no-ui-slider"></div>
+</div>

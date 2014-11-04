@@ -1,0 +1,14 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+    <script src="/libcdn/v1.1/js/BASE.js">
+    </script>
+    <script>
+        BASE.loadCss("/blah").then(function () {
+            document.body.innerHTML = "Loaded";
+        }).ifError(function () {
+            document.body.innerHTML = "Error";
+        });
+    </script>
+</body>
+</html>
