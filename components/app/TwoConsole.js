@@ -9,11 +9,18 @@ BASE.require([
     components.ui.states.UIStateBehavior.call(self);
 
     self.stateActive = function(){
-      console.log("Hey! Over here!  This is the console!");
-      console.log("If you can see me, type \"hi()\"");
+      console.log("/*****************************************/");
+      console.log("/*                                       */");
+      console.log("/* Hey! Over here!  This is the console! */");
+      console.log("/* If you can see me, type \"hi()\" and    */");
+      console.log("/* press enter.                          */");
+      console.log("/*                                       */");
+      console.log("/*****************************************/");
+
       window.hi = function(){
         self.stateManager.replace("console-2");
       };
+
     };
 
     self.prepareToDeactivate = function(){
