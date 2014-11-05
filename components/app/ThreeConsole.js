@@ -6,7 +6,9 @@ BASE.require([
   BASE.namespace("app");
   app.ThreeConsole = function(elem, tags, scope){
     var self = this;
+    
     components.ui.states.UIStateBehavior.call(self);
+
 
   };
 

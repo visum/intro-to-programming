@@ -11,7 +11,7 @@ BASE.require([
     var $button = $(tags['yes-button']);
 
     $button.on("click", function(){
-      self.stateManager.replace("console");
+      self.stateManager.data.app.next();
     });
 
   };

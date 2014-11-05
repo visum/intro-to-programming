@@ -25,7 +25,7 @@ BASE.require([
 
       window.hi = function(){
         console.log("Good job! Now, look back at the main window.");
-        self.stateManager.replace("console-2");
+        self.stateManager.data.app.next();
       };
 
     };

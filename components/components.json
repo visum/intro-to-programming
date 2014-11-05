@@ -4,6 +4,8 @@
     "app-main": "AppMain.html",
     "one-welcome": "OneWelcome.html",
     "two-console": "TwoConsole.html",
-    "three-console": "ThreeConsole.html"
+    "three-console": "ThreeConsole.html",
+    "four-variables": "FourVariables.html",
+    "five-objects": "FiveObjects.html"
   }
 }
