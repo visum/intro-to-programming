@@ -8,7 +8,7 @@ BASE.require([
     var stateManager = $(tags['state-manager']).controller();
 
     var back = [];
-    var forward = ["console", "console-2", "variables", "objects"];
+    var forward = ["console", "console-2", "variables", "objects", "objects-2"];
     var currentState = "welcome";
     
     stateManager.data.app = self;

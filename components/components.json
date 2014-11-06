@@ -6,6 +6,7 @@
     "two-console": "TwoConsole.html",
     "three-console": "ThreeConsole.html",
     "four-variables": "FourVariables.html",
-    "five-objects": "FiveObjects.html"
+    "five-objects": "FiveObjects.html",
+    "six-objects": "SixObjects.html"
   }
 }
